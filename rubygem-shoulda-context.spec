@@ -5,7 +5,7 @@
 
 Name: %{?scl_prefix}rubygem-%{gem_name}
 Version: 1.2.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Context framework extracted from Shoulda
 Group: Development/Languages
 License: MIT
@@ -60,7 +60,7 @@ gem spec %{SOURCE0} -l --ruby > %{gem_name}.gemspec
 sed -i 's/\r$//' MIT-LICENSE
 
 # Remove /usr/bin/env from shebang so RPM doesn't consider this a dependency
-sed -i 's|#!/usr/bin/env ruby|#!/usr/bin/ruby|' bin/convert_to_should_syntax
+sed -i -e "s|^#\!/usr/bin/env ruby|#\!`which ruby`|" bin/convert_to_should_syntax
 
 # Remove zero-length developer-only file
 rm test/fake_rails_root/vendor/plugins/.keep
@@ -141,6 +141,9 @@ popd
 %{gem_instdir}/test
 
 %changelog
+* Thu Mar 03 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-5
+- Fix shebang path to ruby
+
 * Wed Mar 02 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-4
 - Add scl macros
 
