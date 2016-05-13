@@ -5,7 +5,7 @@
 
 Name: %{?scl_prefix}rubygem-%{gem_name}
 Version: 1.2.1
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: Context framework extracted from Shoulda
 Group: Development/Languages
 License: MIT
@@ -88,6 +88,7 @@ find %{buildroot}%{gem_instdir}/bin -type f | xargs chmod a+x
 
 %check
 %{?scl:scl enable %{scl} - << \EOF}
+set -e
 pushd .%{gem_instdir}
 # Remove locks to be able to use system dependencies.
 rm gemfiles/*.lock
@@ -143,6 +144,9 @@ popd
 %{gem_instdir}/test
 
 %changelog
+* Wed Apr 06 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-7
+- Fix: build should fail on test failure
+
 * Thu Mar 10 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-6
 - Enable scl around 'Fixing the shebags'
 
