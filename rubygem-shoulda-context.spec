@@ -5,7 +5,7 @@
 
 Name: %{?scl_prefix}rubygem-%{gem_name}
 Version: 1.2.1
-Release: 7%{?dist}
+Release: 8%{?dist}
 Summary: Context framework extracted from Shoulda
 Group: Development/Languages
 License: MIT
@@ -137,6 +137,7 @@ popd
 %{gem_instdir}/Gemfile
 %{gem_instdir}/gemfiles
 %{gem_instdir}/init.rb
+%dir %{gem_instdir}/rails
 %{gem_instdir}/rails/init.rb
 %{gem_instdir}/Rakefile
 %{gem_instdir}/shoulda-context.gemspec
@@ -144,6 +145,9 @@ popd
 %{gem_instdir}/test
 
 %changelog
+* Fri Apr 08 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-8
+- Fix ownership of %%{gem_instdir}/rails - rhbz#1090361
+
 * Wed Apr 06 2016 Pavel Valena <pvalena@redhat.com> - 1.2.1-7
 - Fix: build should fail on test failure
 
